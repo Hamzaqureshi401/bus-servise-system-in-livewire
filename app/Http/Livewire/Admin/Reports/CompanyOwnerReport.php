@@ -55,9 +55,12 @@ class CompanyOwnerReport extends Component
    
     $this->reportData = Vehicle::with(['assigning.company', 'assigning.expenses', 'assigning.maintainance'])
     ->whereIn('id', $vehicle_id)
-    ->whereHas('assigning', function ($query) use ($start_date, $end_date) {
+    ->whereHas('assigning.expenses', function ($query) use ($start_date, $end_date) {
         $query->whereBetween('date', [$start_date, $end_date]);
-    }) 
+    })
+    ->whereHas('assigning.maintainance', function ($query) use ($start_date, $end_date) {
+        $query->whereBetween('date', [$start_date, $end_date]);
+    })
     ->get();
 
     

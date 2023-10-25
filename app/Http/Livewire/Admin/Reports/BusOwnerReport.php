@@ -56,12 +56,15 @@ public function getData()
 
     $this->reportData = Vehicle::with(['assigning.expenses', 'assigning.maintainance'])
     ->$qur('owner_name', $owner)
-    ->whereHas('assigning', function ($query) use ($start_date, $end_date) {
+    ->whereHas('assigning.expenses', function ($query) use ($start_date, $end_date) {
+        $query->whereBetween('date', [$start_date, $end_date]);
+    })
+    ->whereHas('assigning.maintainance', function ($query) use ($start_date, $end_date) {
         $query->whereBetween('date', [$start_date, $end_date]);
     })
     ->get();
 
-    //dd($this->reportData);
+    //dd($this->reportData , $owner , $qur);
 
     
 

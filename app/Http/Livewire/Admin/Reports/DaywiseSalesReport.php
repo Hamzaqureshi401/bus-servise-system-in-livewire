@@ -51,8 +51,10 @@ $total_driver_cost;
 
         // Fetch data from Expenses and Maintenances tables
         $assignings = VehicleAssigning::where('id', $this->assignment_id)
-            ->whereBetween('date', [$this->start_date, $this->end_date])->with('vehicle', 'company', 'driver')
+            // ->whereBetween('date', [$this->start_date, $this->end_date])->with('vehicle', 'company', 'driver')
             ->get();
+
+            //dd($assignings , $this->assignment_id , $this->start_date, $this->end_date);
 
         $expenses = Expense::where('assignment_id', $this->assignment_id)
             ->whereBetween('date', [$this->start_date, $this->end_date])
