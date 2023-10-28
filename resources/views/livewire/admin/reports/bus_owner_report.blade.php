@@ -97,16 +97,16 @@
                <td>
                   
                @foreach($dates as $date)
-                <a href="{{ route('admin.detailed_report', ['id' => $ownerData['id'], 'date' => $date['date']]) }}">{{ $ownerData['owner_name'] }}</a><br>
+                <a href="{{ route('admin.detailed_report', ['id' => $ownerData['id'], 'start_date' => $start_date , 'end_date' => $end_date]) }}">{{ $ownerData['owner_name'] }}</a><br>
                @endforeach
                 
 
                                  
             </td>
             <td>
-               @foreach($dates as $date)
-                {{ date('l, F j, Y', strtotime($date['date'])) }}
-               @endforeach
+               
+                {{ date('F , Y', strtotime($start_date)) }}
+               
                </td>
                <td>{{ $ownerData['file_no'] }}</td>
                <td>{{ $total_petrol_expenses }}</td>

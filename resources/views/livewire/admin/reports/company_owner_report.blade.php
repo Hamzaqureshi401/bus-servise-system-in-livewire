@@ -199,7 +199,7 @@
                <td>
                   
                @foreach($dates as $date)
-                <a href="{{ route('admin.detailed_report', ['id' => $ownerData['id'], 'date' => $date['date']]) }}"> @if ($ownerData->assigning->isNotEmpty() && $ownerData->assigning->first()->company)
+                <a href="{{ route('admin.detailed_report', ['id' => $ownerData['id'], 'start_date' => $start_date , 'end_date' => $end_date]) }}"> @if ($ownerData->assigning->isNotEmpty() && $ownerData->assigning->first()->company)
                         {{ $ownerData->assigning->first()->company->name }}
                     @else
                         {{ '' }}
@@ -210,9 +210,7 @@
                                  
             </td>
             <td>
-               @foreach($dates as $date)
-                {{ date('l, F j, Y', strtotime($date['date'])) }}
-               @endforeach
+              {{ date('F , Y', strtotime($start_date)) }}
                </td>
                <td>{{ $ownerData['file_no'] }}</td>
                <td>{{ $total_petrol_expenses }}</td>

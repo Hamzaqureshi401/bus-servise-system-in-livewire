@@ -39,10 +39,10 @@ class DetailedReport extends Component
         return view('livewire.admin.reports.detailed_report');
     }
     /* process before render */
-    public function mount($id , $date)
+    public function mount($id , $start_date , $end_date)
     {
        // dd($date);
-    $this->data = $this->generateReportVeriable($id , $date);
+    $this->data = $this->generateReportVeriable($id , $start_date , $end_date);
         $this->lang = getTranslation();
         if(!Auth::user()->can('day_wise_sales_report'))
         {
@@ -64,40 +64,39 @@ class DetailedReport extends Component
         ]);
     } 
 
-    public function generateReportVeriable($id , $date){
+    public function generateReportVeriable($id , $start_date , $end_date){
+
+        //dd($start_date , $end_date);
 
         $assignment = Vehicle::find($id);
         if (!$assignment) {
             // Handle the case when the assignment with the given ID is not found
             abort(404);
         }
-        // $currentDate    = Carbon::now();
-        // $startDate      = $currentDate->copy()->startOfMonth();
-        // $endDate        = $currentDate->copy()->endOfMonth();
-
-        $currentDate    = $date; //Carbon::now();
-        $startDate      = $date; //$currentDate->copy()->startOfMonth();
-        $endDate        = $date; //$currentDate->copy()->endOfMonth();      
+      
+          $currentDate    = $start_date; //Carbon::now();
+        // $start_date      = $date; //$currentDate->copy()->startOfMonth();
+        // $end_date        = $date; //$currentDate->copy()->endOfMonth();      
         $assignings     = VehicleAssigning::where('vehicle_id', $id)
-            //->whereBetween('date', [$startDate, $endDate])
-                         ->whereDate('date' , $date)
+        ->whereBetween('date', [$start_date, $end_date])
+                         //->whereDate('date' , $date)
             ->get();
 
         $expenses       = Expense::whereIn('assignment_id', $assignings->pluck('id')->toArray())
-            //->whereBetween('date', [$startDate, $endDate])
-                         ->whereDate('date' , $date)
+            ->whereBetween('date', [$start_date, $end_date])
+                         //->whereDate('date' , $date)
             ->get();
 
         $maintenances   = Maintainance::where('assignment_id', $assignings->pluck('id')->toArray())
-            //->whereBetween('date', [$startDate, $endDate])
-                         ->whereDate('date' , $date)
+            ->whereBetween('date', [$start_date, $end_date])
+                         //->whereDate('date' , $date)
             ->get();
 
         $data =[
             'assignment'  => $assignment,
             'currentDate' => $currentDate,
-            'startDate'   => $startDate,
-            'endDate'     => $endDate,
+            'start_date'   => $start_date,
+            'end_date'     => $end_date,
             'assignings'  => $assignings,
             'expenses'    => $expenses,
             'maintenances'=> $maintenances,
