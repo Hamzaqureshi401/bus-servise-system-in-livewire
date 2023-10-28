@@ -59,10 +59,10 @@ public function getData()
     ->whereHas('assigning.expenses', function ($query) use ($start_date, $end_date) {
         $query->whereBetween('date', [$start_date, $end_date]);
     })
-    ->whereHas('assigning.maintainance', function ($query) use ($start_date, $end_date) {
-        $query->whereBetween('date', [$start_date, $end_date]);
-    })
-    ->get();
+    // ->whereHas('assigning.maintainance', function ($query) use ($start_date, $end_date) {
+    //     $query->whereBetween('date', [$start_date, $end_date]);
+    // })
+     ->get();
 
     //dd($this->reportData , $owner , $qur);
 

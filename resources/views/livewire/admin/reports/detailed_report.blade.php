@@ -1,7 +1,7 @@
 <div>
    <div class="row mb-2 mb-xl-3">
       <div class="col-auto d-none d-sm-block">
-         <h3><strong>{{$lang->data['day_wise_report'] ?? 'Detailed Bus Report:'}}{{ date('F-Y', strtotime($data['assignings']->first()->date)) }}</strong></h3>
+         <h3><strong>{{$lang->data['day_wise_report'] ?? 'Detailed Bus Report:'}}{{ date('l, F j, Y', strtotime($data['assignings']->first()->date)) }}</strong></h3>
       </div>
    </div>
    <!-- ... (other HTML) ... -->
@@ -25,7 +25,7 @@
          <tbody>
             @foreach ($data['assignings'] as $assignment)
             <tr>
-               <td>{{ $assignment['date']}}</td>
+               <td>{{ date('l, F j, Y', strtotime($assignment['date'])) }}</td>
                <td>{{ $assignment['vehicle']['file_no'] }}</td>
                <td>{{ $assignment['company']['name'] }}</td>
                <td>{{ $assignment['driver']['name'] }}</td>
@@ -56,7 +56,7 @@
          <tbody>
             @foreach ($data['maintenances'] as $maintenance)
             <tr>
-               <td>{{ $maintenance['date'] }}</td>
+               <td>{{  date('l, F j, Y', strtotime($maintenance['date'])) }}</td>
                <td>{{ $maintenance['partstype']['name'] }}</td>
                <td>{{ $maintenance['payment'] }}</td>
                <td>{{ $maintenance['garage_services_charges'] }}</td>
@@ -89,7 +89,7 @@
          <tbody>
             @foreach ($data['expenses'] as $expense)
             <tr>
-               <td>{{ $expense['date'] }}</td>
+               <td>{{ date('l, F j, Y', strtotime($expense['date'])) }}</td>
                <td>{{ $expense['expensetype']['name']}}</td>
                <td>{{ $expense['description'] }}</td>
                <td>{{ $expense['amount'] }}</td>

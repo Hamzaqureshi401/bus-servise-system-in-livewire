@@ -108,7 +108,7 @@
                 </td>
                 <td>
                 @foreach($dates as $date)
-                {{ date('F-Y', strtotime($date['date'])) }}
+                {{ date('l-F-Y', strtotime($date['date'])) }}
                @endforeach
                </td>
                <td>
@@ -211,7 +211,7 @@
             </td>
             <td>
                @foreach($dates as $date)
-                {{ date('F-Y', strtotime($date['date'])) }}
+                {{ date('l, F j, Y', strtotime($date['date'])) }}
                @endforeach
                </td>
                <td>{{ $ownerData['file_no'] }}</td>

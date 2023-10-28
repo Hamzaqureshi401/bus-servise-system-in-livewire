@@ -68,7 +68,7 @@
             </tr>
          </thead>
          @php
-         $SupertotalPetrol = 0;
+         $SupertotalPetrol = 0; // Initialize the super total variable
          $SupertotalMaintainance = 0;
          $SupertotalSalray = 0;
          $SupertotalRent = 0;
@@ -84,7 +84,7 @@
 
                 $total_petrol_expenses = $ownerData->assigning->flatMap->expenses->where('expense_type_id' , 1)->sum('amount');
 
-                $total_maintenance_cost = $ownerData->assigning->flatMap->maintainance->sum('total');
+                $total_maintenance_cost = $ownerData->assigning->flatMap->maintainance->whereBetween('date', [$start_date, $end_date])->sum('total');
 
                 $total_rent = $ownerData->assigning->sum('amount'); 
 
@@ -105,7 +105,7 @@
             </td>
             <td>
                @foreach($dates as $date)
-                {{ date('F-Y', strtotime($date['date'])) }}
+                {{ date('l, F j, Y', strtotime($date['date'])) }}
                @endforeach
                </td>
                <td>{{ $ownerData['file_no'] }}</td>
