@@ -15,6 +15,14 @@
     <link href="{{ asset('/assets/css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/js/toastr.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{{getFavIcon()}}">
+     <style>
+        /* Hide the print button when printing */
+        @media print {
+            .d-n-p {
+                display: none;
+            }
+        }
+    </style>
     @stack('css')
     @livewireScripts()
     @livewireStyles()
@@ -36,6 +44,19 @@
     <script src="{{ asset('/assets/js/toastr.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script type="text/javascript">
+    "use strict";
+       
+       $(document).ready(function () {
+            $('.print').on('click', function () {
+                window.print();
+                setTimeout(function() {
+                    window.close();
+                }, 1);
+            });
+        });
+   </script>
     <script>
         "use strict"
         Livewire.on('closemodal', () => {

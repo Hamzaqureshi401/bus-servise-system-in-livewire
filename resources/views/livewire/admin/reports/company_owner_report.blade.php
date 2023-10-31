@@ -198,13 +198,13 @@
                <!-- !-->
                <td>
                   
-               @foreach($dates as $date)
+               <!-- @foreach($dates as $date) -->
                 <a href="{{ route('admin.detailed_report', ['id' => $ownerData['id'], 'start_date' => $start_date , 'end_date' => $end_date]) }}"> @if ($ownerData->assigning->isNotEmpty() && $ownerData->assigning->first()->company)
                         {{ $ownerData->assigning->first()->company->name }}
                     @else
                         {{ '' }}
                     @endif</a><br>
-               @endforeach
+               <!-- @endforeach -->
                 
 
                                  

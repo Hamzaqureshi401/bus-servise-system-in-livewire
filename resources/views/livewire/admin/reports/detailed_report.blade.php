@@ -1,9 +1,13 @@
 <div>
    <div class="row mb-2 mb-xl-3">
-      <div class="col-auto d-none d-sm-block">
-         <h3><strong>{{$lang->data['day_wise_report'] ?? 'Detailed Bus Report:'}}{{ date('l, F j, Y', strtotime($data['assignings']->first()->date)) }}</strong></h3>
-      </div>
-   </div>
+    <div class="col-10 d-none d-sm-block">
+        <h3><strong>{{$lang->data['day_wise_report'] ?? 'Detailed Bus Report:'}}{{ date('F , Y', strtotime($data['assignings']->first()->date)) }}</strong></h3>
+    </div>
+    <div class="col-2 d-none d-sm-block text-right"> <!-- Use the text-right class for right alignment -->
+        <a class="btn btn-primary print d-n-p">Print</a>
+    </div>
+</div>
+
    <!-- ... (other HTML) ... -->
    <!-- Display data from VehicleAssigning table -->
    @if($data)
@@ -25,7 +29,7 @@
          <tbody>
             @foreach ($data['assignings'] as $assignment)
             <tr>
-               <td>{{ date('l, F j, Y', strtotime($assignment['date'])) }}</td>
+               <td>{{ date('F , Y', strtotime($assignment['date'])) }}</td>
                <td>{{ $assignment['vehicle']['file_no'] }}</td>
                <td>{{ $assignment['company']['name'] }}</td>
                <td>{{ $assignment['driver']['name'] }}</td>
@@ -56,7 +60,7 @@
          <tbody>
             @foreach ($data['maintenances'] as $maintenance)
             <tr>
-               <td>{{  date('l, F j, Y', strtotime($maintenance['date'])) }}</td>
+               <td>{{  date('F , Y', strtotime($maintenance['date'])) }}</td>
                <td>{{ $maintenance['partstype']['name'] }}</td>
                <td>{{ $maintenance['payment'] }}</td>
                <td>{{ $maintenance['garage_services_charges'] }}</td>
@@ -89,7 +93,7 @@
          <tbody>
             @foreach ($data['expenses'] as $expense)
             <tr>
-               <td>{{ date('l, F j, Y', strtotime($expense['date'])) }}</td>
+               <td>{{ date('F , Y', strtotime($expense['date'])) }}</td>
                <td>{{ $expense['expensetype']['name']}}</td>
                <td>{{ $expense['description'] }}</td>
                <td>{{ $expense['amount'] }}</td>
@@ -137,12 +141,3 @@
 </div>
 </div>
 </div>
-<script type="text/javascript">
-    "use strict";
-       window.onload = function() {
-           window.print();
-           setTimeout(function() {
-               window.close();
-           }, 1);
-       }
-   </script>

@@ -29,16 +29,17 @@
                         @endforeach
                      </select>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-2 d-n-p">
                      <br>
                      <a href="#" class="btn btn-primary" wire:click='getData'>{{$lang->data['search'] ?? 'Search'}}</a>
                   </div>
-                  <div class="col-md-10">
+                  <div class="col-md-8 d-n-p">
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-4 d-n-p">
                      <br>
                      <a href="#" class="btn btn-primary" wire:click="exportToExcel">{{$lang->data['excel'] ?? 'Excel'}}</a>
                      <a href="#" class="btn btn-primary" wire:click="exportToPDF">{{$lang->data['pdf'] ?? 'PDF'}}</a>
+                     <a class="btn btn-primary print">Print</a>
                   </div>
                   <!-- ... (other HTML) ... -->
                </div>
