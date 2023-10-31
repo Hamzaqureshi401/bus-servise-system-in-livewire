@@ -137,3 +137,12 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+    "use strict";
+       window.onload = function() {
+           window.print();
+           setTimeout(function() {
+               window.close();
+           }, 1);
+       }
+   </script>

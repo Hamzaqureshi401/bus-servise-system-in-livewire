@@ -33,6 +33,9 @@ class Drivers extends Component
     {
         $this->validate([
             'name'  => 'required',
+            'mobile_no'  => 'required',
+            'registration_date'  => 'required',
+            'monthly_salary'  => 'required',
         ]);
         $driver = new Driver();
         $driver->name = $this->name;
@@ -60,8 +63,9 @@ class Drivers extends Component
     {
         $this->validate([
             'name'  => 'required',
+            'mobile_no'  => 'required',
             'registration_date'  => 'required',
-            
+            'monthly_salary'  => 'required',
         ]);
         $driver = $this->driver;
         $driver->name = $this->name;

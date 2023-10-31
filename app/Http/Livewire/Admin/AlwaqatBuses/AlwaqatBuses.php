@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AlwaqatBuses extends Component
 {
-    public $limousine,$file_no,$plate_no,$owner_name,$vehicle_type, $vehicle_model, $registration_date,$status = true,$lang;
+    public $limousine,$file_no,$plate_no,$mobile,$owner_name,$vehicle_type, $vehicle_model, $registration_date,$status = true,$lang;
     public $limousines ;
     /* render the page */
     public function render()
@@ -44,6 +44,7 @@ class AlwaqatBuses extends Component
         $limousine->vehicle_type = $this->vehicle_type;
         $limousine->vehicle_model = $this->vehicle_model;
         $limousine->registration_date = $this->registration_date;
+        $limousine->mobile = $this->mobile;
   
         $limousine->save();
         $this->emit('closemodal');
@@ -62,6 +63,9 @@ class AlwaqatBuses extends Component
         $this->vehicle_type = $limousine->vehicle_type;
         $this->vehicle_model = $limousine->vehicle_model;
         $this->registration_date = $limousine->registration_date;
+        $this->mobile = $limousine->mobile;
+    
+        
     }
     /* update driver data */
     public function update()
@@ -80,6 +84,7 @@ class AlwaqatBuses extends Component
         $limousine->vehicle_type = $this->vehicle_type;
         $limousine->vehicle_model = $this->vehicle_model;
         $limousine->registration_date = $this->registration_date;
+        $limousine->mobile = $this->mobile;
         $limousine->save();
         $this->emit('closemodal');
         $this->dispatchBrowserEvent(

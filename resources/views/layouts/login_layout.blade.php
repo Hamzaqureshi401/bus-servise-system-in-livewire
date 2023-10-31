@@ -15,8 +15,9 @@
     @livewireScripts()
     @livewireStyles()
 </head>
-<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default" class="login-bg">
+<body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default" class="login-bg" style="background-color: grey;">
+    <!-- Your login form goes here -->
     {{$slot}}
+    <script src="{{ asset('/assets/js/app.js') }}"></script>
 </body>
-<script src="{{ asset('/assets/js/app.js') }}"></script>
 </html>

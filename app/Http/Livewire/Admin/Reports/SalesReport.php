@@ -30,7 +30,7 @@ class SalesReport extends Component
     }
     /* feach customer sales report*/
     public function getData(){
-        $query = Vehicle::query()->orderBy('istamara_end_date', 'desc');
+        $query = Vehicle::query()->orderBy('istamara_end_date', 'asc');
         $this->reportData = $query->get();
     }
 

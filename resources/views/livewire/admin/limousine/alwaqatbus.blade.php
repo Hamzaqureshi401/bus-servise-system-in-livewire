@@ -22,6 +22,7 @@
                                 <th class="tw-8">{{$lang->data['file_no']??'File No.'}}</th>
                                 <th class="tw-12">{{$lang->data['plate_no']??'Plate No.'}}</th>
                                 <th class="tw-12">{{$lang->data['owner']??'Owner'}}</th>
+                                <th class="tw-15">{{$lang->data['registration_date']??'Mobile No.'}}</th>
                                 <th class="tw-12">{{$lang->data['vehicle_type']??'Vehicle Type'}}</th>
                                 <th class="tw-12">{{$lang->data['vehicle_model']??'Vehicle Model'}}</th>
                                 <th class="tw-15">{{$lang->data['registration_date']??'Registration Date'}}</th>
@@ -36,8 +37,10 @@
                                 <td>{{$item->file_no}}</td>
                                 <td>{{$item->plate_no}}</td>
                                 <td>{{$item->owner_name}}</td>
+                                <td>{{$item->mobile}}</td>
                                 <td>{{$item->vehicle_type}}</td>
                                 <td>{{$item->vehicle_model}}</td>
+                                
                                 <td>{{$item->registration_date}}</td>
                            
                                 <td>
@@ -83,10 +86,18 @@
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
+                    
                         <div class="mb-3 col-md-6">
                             <label class="form-label">{{$lang->data['owner_name']??'Owner Name'}}<span class="text-danger"></span></label>
                             <input type="text" class="form-control" placeholder="{{$lang->data['owner_name']??'Baba'}}" wire:model="owner_name">
                         </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">{{$lang->data['mobile']??'Mobile No. '}}<span class="text-danger"><strong>*</strong></span></label>
+                            <input type="number" class="form-control"   wire:model="mobile" required>
+                            @error('mobile')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>    
                         <div class="mb-3 col-md-6">
                             <label class="form-label">{{$lang->data['vehicle_type']??'Vehicle Type '}}</label>
                             <input type="text" class="form-control" wire:model="vehicle_type">
@@ -95,13 +106,15 @@
                             <label class="form-label">{{$lang->data['vehicle_model']??'Vehicle Model '}}</label>
                             <input type="text" class="form-control"  wire:model="vehicle_model">
                         </div>
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-12">
                             <label class="form-label">{{$lang->data['registration_date']??'Registration Date '}}<span class="text-danger"><strong>*</strong></span></label>
                             <input type="date" class="form-control"   wire:model="registration_date" required>
                             @error('registration_date')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>    
+                        
+                    
                         
                     
                     </div>
@@ -143,6 +156,13 @@
                             <input type="text" class="form-control" placeholder="{{$lang->data['owner_name']??'Mr al khalid'}}" wire:model="owner_name">
                         </div>
                         <div class="mb-3 col-md-6">
+                            <label class="form-label">{{$lang->data['mobile']??'Mobile No. '}}<span class="text-danger"><strong>*</strong></span></label>
+                            <input type="number" class="form-control"   wire:model="mobile" required>
+                            @error('mobile')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-3 col-md-6">
                             <label class="form-label">{{$lang->data['vehicle_type']??'Vehicle Type '}}</label>
                             <input type="text" class="form-control"placeholder="{{$lang->data['owner_name']??' 12 seets Limosuine'}}"  wire:model="vehicle_type">
                         </div>
@@ -150,7 +170,7 @@
                             <label class="form-label">{{$lang->data['vehicle_model']??'Vehicle Model '}}</label>
                             <input type="text" class="form-control" placeholder="{{$lang->data['owner_name']??'2018'}}" wire:model="vehicle_model">
                         </div>
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-12">
                             <label class="form-label">{{$lang->data['registration_date']??'Registration Date '}}</label>
                             <input type="date" class="form-control"   wire:model="registration_date" required>
                             @error('registration_date')
@@ -158,6 +178,7 @@
                             @enderror
                         </div>    
                         
+                            
 
                 </div>
                 <div class="modal-footer">

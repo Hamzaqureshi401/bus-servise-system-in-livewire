@@ -29,12 +29,12 @@
                 </div>
                 
                     <div class="mb-3 col-md-6">
-                        <label class="form-label">{{$lang->data['vehicle'] ?? 'Date - File no. - Company- Driver '}}<span class="text-danger"><strong>*</strong></span></label>
+                        <label class="form-label">{{$lang->data['vehicle'] ?? 'File no. - Company- Driver '}}<span class="text-danger"><strong>*</strong></span></label>
                         <select class="form-control" wire:change="assignfileno" wire:model="assignment_id">
                             <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
                             @foreach ($assigning as $assignment)
                                 <option value="{{ $assignment->id }}">
-                                      {{ $assignment->date }}-{{ $assignment->vehicle->file_no }} - {{ $assignment->company->name }} - {{ $assignment->driver->name }}
+                                      {{ $assignment->vehicle->file_no }} - {{ $assignment->company->name }} - {{ $assignment->driver->name }}
                                 </option>
                             @endforeach
                         </select>

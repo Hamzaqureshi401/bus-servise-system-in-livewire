@@ -1,9 +1,18 @@
 <div>
-	<main class="d-flex w-100 h-100">
+		<main class="d-flex w-100 h-100">
 		<div class="container d-flex flex-column">
 			<div class="row vh-100">
 				<div class="col-sm-10 col-md-8 col-lg-4 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
+						<center>
+                            <div>
+                                @php
+                                $logo = '/uploads/logo/1698697749.png';
+                                @endphp
+                                <img src="{{ $logo }}" alt="Company Logo" style="width: auto; height: auto; max-width: 60%; max-height: 60%;">
+                            </div>
+                       </center>
+<br>
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">

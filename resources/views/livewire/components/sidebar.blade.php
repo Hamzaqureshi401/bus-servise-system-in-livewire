@@ -1,6 +1,12 @@
 <style>
 .arabic-text {
     font-size: 18px; /* Adjust the font size as needed */
+    
+    
+}
+.sidebar-nav,.sidebar-content,.sidebar-brand{
+background-color: #171D3F !important;
+    
 }
 </style>
 <div>
@@ -12,7 +18,7 @@
                      </span>
                 <svg class="sidebar-brand-icon align-middle" width="32px" height="32px" viewBox="0 0 24 24"
                     fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"
-                    color="#FFFFFF" class="mm-3">
+                    color="#171D3F" class="mm-3">
                     <path d="M12 4L20 8.00004L12 12L4 8.00004L12 4Z"></path>
                     <path d="M20 12L12 16L4 12"></path>
                     <path d="M20 16L12 20L4 16"></path>
@@ -22,14 +28,56 @@
             
 
             <ul class="sidebar-nav">
-                <li class="sidebar-header">
-                    {{$lang->data['pages']??'Pages'}}
-                </li>
+                
                 <li class="sidebar-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">{{$lang->data['dashboard'] ?? 'Dashboard'}}</span>
                     </a>
                 </li>
+                        
+                @if (Auth::user()->can('sales_report') || Auth::user()->can('day_wise_sales_report') || Auth::user()->can('item_wise_sales_report') || Auth::user()->can('customer_report'))
+                <li class="sidebar-item {{ Request::is('admin/reports*') ? 'active' : '' }}">
+                    <a data-bs-target="#reports" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                        <i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">{{$lang->data['reports']??'Reports'}}</span>&nbsp;
+                    <span class="arabic-text">التقارير</span>
+                    </a>
+                    <ul id="reports" class="sidebar-dropdown list-unstyled collapse {{ Request::is('admin/reports*') ? 'show' : '' }}" data-bs-parent="#sidebar">
+                        @if (Auth::user()->can('day_wise_sales_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/day-wise*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.daywise_report')}}">{{$lang->data['day_wise_report']??'Assigned Bus 
+                                    '}}&nbsp;
+                                    <span class="aarabic-text">تفاصيل باصات</span>
+                                    </a></li>
+                        @endif
+                        @if (Auth::user()->can('item_wise_sales_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/item-sales*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.item_sales_report')}}">{{$lang->data['item_wise_report']??'Salary & Petrol
+                                     '}}&nbsp;
+                                     <span class="arabic-text">عاش بترول</span>
+                                     </a></li>
+                        @endif
+                        @if (Auth::user()->can('customer_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/customer*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.customer_report')}}">{{$lang->data['customer_report']??'Maintainance '}}&nbsp;
+                            <span class="arabic-text">صيانة</span>
+                            </a></li>
+                        @endif
+                        @if (Auth::user()->can('customer_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/istamara-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.sales_report')}}">{{$lang->data['customer_report']??'Istamara '}}&nbsp;
+                            <span class="arabic-text">استمارا</span>
+                            </a></li>
+                        @endif
+                         @if (Auth::user()->can('customer_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/bus-owner-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.bus_owner_report')}}">{{$lang->data['customer_report']??'Bus Owner '}}&nbsp;
+                            <span class="arabic-text">مالك الحافلة</span>
+                            </a></li>
+                        @endif
+                        @if (Auth::user()->can('customer_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/company-owner-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.company_report')}}">{{$lang->data['customer_report']??'Company Owner '}}&nbsp;
+                            <span class="aarabic-text">مالك شركات</span>
+                            </a></li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+    
                 <!-- Drivers -->
                 @if (Auth::user()->can('driver_list'))
                 <li class="sidebar-item {{ Request::is('admin/driver*') ? 'active' : '' }}">
@@ -118,49 +166,6 @@
                     @endif
 
                 <!-- Sta -->
-            
-                @if (Auth::user()->can('sales_report') || Auth::user()->can('day_wise_sales_report') || Auth::user()->can('item_wise_sales_report') || Auth::user()->can('customer_report'))
-                <li class="sidebar-item {{ Request::is('admin/reports*') ? 'active' : '' }}">
-                    <a data-bs-target="#reports" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                        <i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">{{$lang->data['reports']??'Reports'}}</span>&nbsp;
-                    <span class="arabic-text">التقارير</span>
-                    </a>
-                    <ul id="reports" class="sidebar-dropdown list-unstyled collapse {{ Request::is('admin/reports*') ? 'show' : '' }}" data-bs-parent="#sidebar">
-                        @if (Auth::user()->can('day_wise_sales_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/day-wise*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.daywise_report')}}">{{$lang->data['day_wise_report']??'Assigned Bus 
-                                    '}}&nbsp;
-                                    <span class="aarabic-text">تفاصيل باصات</span>
-                                    </a></li>
-                        @endif
-                        @if (Auth::user()->can('item_wise_sales_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/item-sales*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.item_sales_report')}}">{{$lang->data['item_wise_report']??'Salary & Petrol
-                                     '}}&nbsp;
-                                     <span class="arabic-text">عاش بترول</span>
-                                     </a></li>
-                        @endif
-                        @if (Auth::user()->can('customer_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/customer*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.customer_report')}}">{{$lang->data['customer_report']??'Maintainance '}}&nbsp;
-                            <span class="arabic-text">صيانة</span>
-                            </a></li>
-                        @endif
-                        @if (Auth::user()->can('customer_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/istamara-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.sales_report')}}">{{$lang->data['customer_report']??'Istamara '}}&nbsp;
-                            <span class="arabic-text">استمارا</span>
-                            </a></li>
-                        @endif
-                         @if (Auth::user()->can('customer_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/bus-owner-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.bus_owner_report')}}">{{$lang->data['customer_report']??'Bus Owner '}}&nbsp;
-                            <span class="arabic-text">مالك الحافلة</span>
-                            </a></li>
-                        @endif
-                        @if (Auth::user()->can('customer_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/company-owner-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.company_report')}}">{{$lang->data['customer_report']??'Company Owner '}}&nbsp;
-                            <span class="aarabic-text">مالك شركات</span>
-                            </a></li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
              @if (Auth::user()->can('alwaqatbus_list'))
                <li class="sidebar-item {{ Request::is('admin/alwaqat_buses*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.alwaqat_buses') }}">

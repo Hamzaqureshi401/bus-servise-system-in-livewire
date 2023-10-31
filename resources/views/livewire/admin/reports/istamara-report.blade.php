@@ -20,7 +20,6 @@
                         <th class="tw-12">{{$lang->data['plate_no'] ?? 'Plate No.'}}</th>
                         <th class="tw-12">{{$lang->data['owner'] ?? 'Owner'}}</th>
                         <th class="tw-12">{{$lang->data['vehicle_type'] ?? 'Vehicle Type'}}</th>
-                        <th class="tw-15">{{$lang->data['registration_date'] ?? 'Registration Date'}}</th>
                         <th class="tw-15"><strong>{{$lang->data['insurance_start_date'] ?? 'Istamara End Date'}}</strong></th>
                     </tr>
                 </thead>
@@ -32,7 +31,6 @@
                             <td>{{$item->plate_no}}</td>
                             <td>{{$item->owner_name}}</td>
                             <td>{{$item->vehicle_type}}</td>
-                            <td>{{ date('d/m/Y', strtotime($item->registration_date)) }}</td>
                             <td>{{ date('d/m/Y', strtotime($item->istamara_end_date)) }}</td>
                         </tr>
                     @endforeach

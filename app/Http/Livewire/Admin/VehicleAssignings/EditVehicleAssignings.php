@@ -18,7 +18,7 @@ class EditVehicleAssignings extends Component
     }
     /* process before render */
     public function mount($id)
-    { 
+    {
         $this->company = Company::get();
         $this->vehicle = Vehicle::get();
         $this->assigning = Vehicleassigning::find($id);
@@ -27,12 +27,12 @@ class EditVehicleAssignings extends Component
         {
             abort(404);
         }
-        $this->date        = $this->assigning->date;
-        $this->vehicle_id  = $this->assigning->vehicle_id;
-        $this->driver_id   = $this->assigning->driver_id;
-        $this->company_id  = $this->assigning->company_id;
-        $this->amount      = $this->assigning->amount;
-        $this->end_of_time = $this->assigning->end_of_time;
+        $this->date= $this->assigning->date;
+        $this->vehicle_id=$this->assigning->vehicle_id;
+        $this->driver_id=$this->assigning->driver_id;
+        $this->company_id=$this->assigning->company_id;
+        $this->amount=$this->assigning->amount;
+        $this->end_of_time=$this->assigning->end_of_time;
         if(!Auth::user()->can('edit_assigning'))
         {
             abort(404);
