@@ -9,11 +9,11 @@
 <div class="card p-0">
    <div class="card-header p-3">
       <div class="row">
-         <div class="col-md-3">
+         <div class="col-md-2">
             <label>{{$lang->data['start_date'] ?? 'Start Date'}}</label>
             <input type="date" class="form-control" wire:model="start_date">
          </div>
-         <div class="col-md-3">
+         <div class="col-md-2">
             <label>{{$lang->data['end_date'] ?? 'End Date'}}</label>
             <input type="date" class="form-control" wire:model="end_date">
          </div>
@@ -29,7 +29,7 @@
                @endforeach
             </select>
          </div>
-         <div class="col-md-2">
+         <div class="col-md-2 d-n-p">
             <br>
             <a href="#" class="btn btn-primary" wire:click='getData'>{{$lang->data['search'] ?? 'Search'}}</a>
             <!--     </div>
@@ -40,6 +40,10 @@
                <a href="#" class="btn btn-primary" wire:click="exportToExcel">{{$lang->data['excel'] ?? 'Excel'}}</a>
                <a href="#" class="btn btn-primary" wire:click="exportToPDF">{{$lang->data['pdf'] ?? 'PDF'}}</a>
                </div>!-->            <!-- ... (other HTML) ... -->
+         </div>
+         <div class="col-2"> 
+            <br>
+            <a class="btn btn-primary print d-n-p">Print</a>
          </div>
       </div>
    </div>

@@ -42,7 +42,7 @@
                         </select>
                     </div>
                         
-                        <div class="col-md-3">
+                        <div class="col-md-3 d-n-p">
                             <br>
                             <a href="#" class="btn btn-primary" wire:click='getData'>{{$lang->data['search'] ?? 'Search'}}</a>
       <!--                  <div class="col-md-2">
@@ -52,6 +52,10 @@
                         </div>    !-->
                         
                         </div>
+                         <div class="col-2"> 
+                                    <br>
+                                    <a class="btn btn-primary print d-n-p">Print</a>
+                                </div>
                     </div>
         </div>
     </div>

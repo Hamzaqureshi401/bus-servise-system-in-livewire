@@ -4,6 +4,10 @@
         <div class="col-auto d-none d-sm-block">
             <h3><strong>{{$lang->data['customer_report'] ?? 'Istamara End Date Report'}}</strong></h3>
         </div>
+        <div class="col-2"> 
+                                    
+                                    <a class="btn btn-primary print d-n-p">Print</a>
+                                </div>
     </div>
 
                 <br>

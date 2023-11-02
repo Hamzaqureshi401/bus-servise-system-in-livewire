@@ -42,20 +42,25 @@
                         </div>
                 </div>
                     
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                        <form wire:submit.prevent="getData">
                             <!-- Your search form goes here -->
                             <div class="row">
                                 <!-- Other form fields -->
-                                <div class="col-md-3">
+                                <div class="col-2">
                                     <br>
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary d-n-p">
                                         @if ($isFetchingData)
                                             Loading...
                                         @else
                                             {{$lang->data['search'] ?? 'Search'}}
                                         @endif
                                     </button>
+                                </div>
+                                
+                                <div class="col-2"> 
+                                    <br>
+                                    <a class="btn btn-primary print d-n-p">Print</a>
                                 </div>
                             </div>
                         </form>
