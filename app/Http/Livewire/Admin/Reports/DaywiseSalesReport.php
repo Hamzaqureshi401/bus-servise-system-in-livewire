@@ -33,7 +33,7 @@ $total_driver_cost;
     {
         $this->start_date = Carbon::today()->startOfMonth()->toDateString();
         $this->end_date = Carbon::today()->toDateString();
-        $this->assigning = VehicleAssigning::with(['vehicle', 'company', 'driver'])->get();
+        $this->assigning = VehicleAssigning::with(['vehicle', 'company', 'driver'])->where('status', 1)->get();
         $this->vehicle = Vehicle::where('status',1)->get();
         $this->driver = Driver::where('status',1)->get();
         $this->company = Company::all();

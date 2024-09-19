@@ -28,7 +28,6 @@ class ItemSalesReport extends Component
         $this->start_date = Carbon::today()->startOfMonth()->toDateString();
         $this->end_date = Carbon::today()->toDateString();
         $this->expensetype = Expensetype::all();
-        $this->expense = Expense::all();
         $this->vehicle = Vehicle::all();
         $this->lang = getTranslation();
         if(!Auth::user()->can('item_wise_sales_report'))
@@ -55,6 +54,6 @@ class ItemSalesReport extends Component
         }
 
         // Fetch data based on filters
-        $this->reportData = $query->get();
+        $this->reportData = $query->orderBy('vehicle_file_no', 'asc')->get();
     }   
 }

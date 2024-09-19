@@ -22,7 +22,7 @@
                      <label class="form-label">{{$lang->data['vehicle'] ?? 'Bus File no. - Company - Driver '}}<span class="text-danger"><strong>*</strong></span></label>
                      <select class="form-control" wire:model="assignment_id">
                         <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
-                        @foreach ($assigning as $assignment)
+                        @foreach ($assigning->sortBy('vehicle.file_no') as $assignment)
                         <option value="{{ $assignment->id }}">
                            {{ $assignment->vehicle->file_no }} --> {{ $assignment->company->name }} --> {{ $assignment->driver->name }}
                         </option>

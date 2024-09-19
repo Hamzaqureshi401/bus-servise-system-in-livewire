@@ -28,22 +28,23 @@
                         @enderror
                     </div>
                     
-                    <div class="mb-3 col-md-6">
-                        <label class="form-label">{{$lang->data['vehicle'] ?? ' File no. - Company- Driver '}}<span class="text-danger"><strong>*</strong></span></label>
-                        <select class="form-control" wire:change="assignfileno" wire:model="assignment_id">
-                            <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
-                            @foreach ($assigning as $assignment)
-                                <option value="{{ $assignment->id }}">
-                                      {{ $assignment->vehicle->file_no }} - {{ $assignment->company->name }} - {{ $assignment->driver->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('vehicle')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
+                   <div class="mb-3 col-md-6">
+    <label class="form-label">{{$lang->data['vehicle'] ?? ' File no. - Company- Driver '}}<span class="text-danger"><strong>*</strong></span></label>
+    <select class="form-control" wire:change="assignfileno" wire:model="assignment_id">
+        <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
+        @foreach ($assigning->sortBy('vehicle.file_no') as $assignment)
+            <option value="{{ $assignment->id }}">
+                {{ $assignment->vehicle->file_no }} - {{ $assignment->company->name }} - {{ $assignment->driver->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('vehicle')
+        <span class="text-danger">{{$message}}</span>
+    @enderror
+</div>
+
                 </div>
-                <input type="hidden" wire:model="vehicleFileNo">
+                <input type="hidden" wire:model="vehicleFileNo" required>
 
                 <div class="row">
                     <div class="mb-3 col-md-6">

@@ -84,15 +84,16 @@
             @foreach ($reportData as $ownerData)
             <tr>
                 @php
-                $total_salary_expenses = $ownerData->assigning->flatMap->expenses->where('expense_type_id' , 2)->sum('amount');
+                $dates = $ownerData->assigning->where('status' , 1);
+                $total_salary_expenses = $ownerData->expenses->where('expense_type_id' , 2)->whereBetween('date', [$start_date.' 00:00:00', $end_date.' 23:59:59'])->sum('amount');
 
-                $total_petrol_expenses = $ownerData->assigning->flatMap->expenses->where('expense_type_id' , 1)->sum('amount');
-
+                $total_petrol_expenses = $ownerData->expenses->where('expense_type_id' , 1)->whereBetween('date', [$start_date.' 00:00:00', $end_date.' 23:59:59'])->sum('amount');
+               
                 $total_maintenance_cost = $ownerData->assigning->flatMap->maintainance->whereBetween('date', [$start_date, $end_date])->sum('total');
 
-                $total_rent = $ownerData->assigning->sum('amount'); 
+                $total_rent = $ownerData->assigning->where('status' , 1)->sum('amount'); 
 
-                $dates = $ownerData->assigning;
+                
 
                 //dd($reportData);
 
