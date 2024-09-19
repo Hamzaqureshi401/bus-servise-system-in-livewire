@@ -74,6 +74,11 @@ background-color: #171D3F !important;
                             <span class="aarabic-text">مالك شركات</span>
                             </a></li>
                         @endif
+                        @if (Auth::user()->can('customer_report'))
+                            <li class="sidebar-item {{ Request::is('admin/reports/drivers*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.reports.drivers')}}">{{$lang->data['customer_report']??'Driver Reports '}}&nbsp;
+                            <span class="aarabic-text">مالك شركات</span>
+                            </a></li>
+                        @endif
                     </ul>
                 </li>
                 @endif

@@ -25,6 +25,7 @@
   'admin.reports.customer-report' => 'App\\Http\\Livewire\\Admin\\Reports\\CustomerReport',
   'admin.reports.daywise-sales-report' => 'App\\Http\\Livewire\\Admin\\Reports\\DaywiseSalesReport',
   'admin.reports.detailed-report' => 'App\\Http\\Livewire\\Admin\\Reports\\DetailedReport',
+  'admin.reports.driver-report' => 'App\\Http\\Livewire\\Admin\\Reports\\DriverReport',
   'admin.reports.item-sales-report' => 'App\\Http\\Livewire\\Admin\\Reports\\ItemSalesReport',
   'admin.reports.sales-report' => 'App\\Http\\Livewire\\Admin\\Reports\\SalesReport',
   'admin.settings.account-settings' => 'App\\Http\\Livewire\\Admin\\Settings\\AccountSettings',

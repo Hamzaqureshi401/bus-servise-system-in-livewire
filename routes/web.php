@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\Payments\Payments;
 use App\Http\Livewire\Admin\Payments\PaymentsTable;
+use App\Http\Livewire\Admin\Reports\DriverReport;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,7 +71,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['admin','install']], functi
 
     Route::get('admin/payments', Payments::class)->name('admin.add.payments');
     Route::get('admin/payments/view', PaymentsTable::class)->name('admin.payments.view');
-
+    Route::get('/admin/reports/drivers', DriverReport::class)->name('admin.reports.drivers');
 
 
 Route::group(['prefix' => 'install/'], function () {
