@@ -34,7 +34,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <input type="hidden" wire:model="vehicleFileNo">
+                        <input type="hidden" wire:model="assignfileno">
                         @error('vehicle')
                             <span class="text-danger">{{$message}}</span>
                         @enderror

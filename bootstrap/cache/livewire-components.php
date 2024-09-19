@@ -18,6 +18,8 @@
   'admin.orders.print-order' => 'App\\Http\\Livewire\\Admin\\Orders\\PrintOrder',
   'admin.orders.view-order' => 'App\\Http\\Livewire\\Admin\\Orders\\ViewOrder',
   'admin.parts-types.parts-types' => 'App\\Http\\Livewire\\Admin\\PartsTypes\\PartsTypes',
+  'admin.payments.payments' => 'App\\Http\\Livewire\\Admin\\Payments\\Payments',
+  'admin.payments.payments-table' => 'App\\Http\\Livewire\\Admin\\Payments\\PaymentsTable',
   'admin.reports.bus-owner-report' => 'App\\Http\\Livewire\\Admin\\Reports\\BusOwnerReport',
   'admin.reports.company-owner-report' => 'App\\Http\\Livewire\\Admin\\Reports\\CompanyOwnerReport',
   'admin.reports.customer-report' => 'App\\Http\\Livewire\\Admin\\Reports\\CustomerReport',

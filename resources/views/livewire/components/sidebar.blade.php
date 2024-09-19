@@ -204,14 +204,14 @@ background-color: #171D3F !important;
                     </a>
                 </li>
                 @endif
-        <!--    @if (Auth::user()->can('translations_list') )
-            <li class="sidebar-item {{ Request::is('admin/translations*') ? 'active' : '' }}">
-                <a class="sidebar-link " href="{{ route('admin.translations') }}">
-                    <i class="align-middle" data-feather="globe"></i> <span class="align-middle">{{$lang->data['translations']??'Translations'}}</span>&nbsp;
+            
+            <li class="sidebar-item {{ Request::is('admin/payments*') ? 'active' : '' }}">
+                <a class="sidebar-link " href="{{ route('admin.payments.view') }}">
+                    <i class="align-middle" data-feather="globe"></i> <span class="align-middle">{{$lang->data['Payments']??'Payments'}}</span>&nbsp;
                 <span class="arabic-text"></span>
                 </a>
             </li>
-            @endif !-->
+            
             @if (Auth::user()->can('account_settings') || Auth::user()->can('app_settings'))
             <li class="sidebar-item {{ Request::is('admin/settings*') ? 'active' : '' }}">
                 <a data-bs-target="#settings" data-bs-toggle="collapse" class="sidebar-link collapsed">

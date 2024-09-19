@@ -23,6 +23,14 @@ class Vehicle extends Model
     {
         return $this->hasMany(VehicleAssigning::class,'vehicle_id','id');
     }
+    public function maintainance()
+    {
+        return $this->hasMany(Maintainance::class,'vehicle_file_no','file_no');
+    }
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class,'vehicle_file_no','file_no');
+    }
 
 
 }

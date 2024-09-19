@@ -26,11 +26,15 @@ class AddMaintainances extends Component
     public function mount()
     {
         $this->date = date('Y-m-d');
-        $this->assigning = VehicleAssigning::with(['vehicle', 'company', 'driver'])->get();
+        $this->assigning = VehicleAssigning::with(['vehicle', 'company', 'driver'])
+    ->where('status', 1)
+    ->orderBy('vehicle_file_no', 'asc')
+    ->get();
+
         $this->vehicle = Vehicle::where('status',1)->get();
         $this->driver = Driver::where('status',1)->get();
         $this->company = Company::all(); 
-        $this->vehicle = Vehicle::where('status',1)->get();
+      
         $this->partstype = PartsType::all();
 
         if(!Auth::user()->can('add_maintainance'))
@@ -46,7 +50,8 @@ class AddMaintainances extends Component
             'assignment_id'  => 'required',
             'partstype_id'  => 'required',
             'payment' => 'required',
-            'garage_services_charges'=>'required'
+            'garage_services_charges'=>'required',
+            'vehicleFileNo'=>'required'
          
 
         ]);

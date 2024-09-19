@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\Admin\Payments\Payments;
+use App\Http\Livewire\Admin\Payments\PaymentsTable;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,8 +62,13 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['admin','install']], functi
     Route::get('/vehicleassigning/view', \App\Http\Livewire\Admin\VehicleAssignings\ViewVehicleAssignings::class)->name('admin.view_assigning');
     Route::get('/vehicleassigning/add', \App\Http\Livewire\Admin\VehicleAssignings\AddVehicleAssignings::class)->name('admin.add_assigning');
     Route::get('/vehicleassigning/edit/{id}', \App\Http\Livewire\Admin\VehicleAssignings\EditVehicleAssignings::class)->name('admin.edit_assigning');
+    
+
 
 });
+
+    Route::get('admin/payments', Payments::class)->name('admin.add.payments');
+    Route::get('admin/payments/view', PaymentsTable::class)->name('admin.payments.view');
 
 
 

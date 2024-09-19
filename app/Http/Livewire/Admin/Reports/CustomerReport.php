@@ -26,7 +26,7 @@ class CustomerReport extends Component
         $this->end_date = Carbon::today()->toDateString();
         $this->partstype = Partstype::all();
         $this->maintain = Maintainance::all();
-        $this->vehicle = Vehicle::all();
+        $this->vehicle = Vehicle::orderBy('file_no', 'asc')->get();
         $this->lang = getTranslation();
         if(!Auth::user()->can('customer_report'))
         {
@@ -52,7 +52,7 @@ class CustomerReport extends Component
         }
 
         // Fetch data based on filters
-        $this->reportData = $query->get();
+        $this->reportData = $query->orderBy('vehicle_file_no', 'asc')->get();
         $this->data[]=$this->reportData;
     }
 

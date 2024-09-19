@@ -28,7 +28,7 @@ class AddExpenses extends Component
     public function mount()
     {
         $this->date = date('Y-m-d');
-        $this->assigning = VehicleAssigning::with(['vehicle', 'company', 'driver'])->get();
+        $this->assigning = VehicleAssigning::with(['vehicle', 'company', 'driver'])->where('status', 1)->get();
         $this->vehicle = Vehicle::where('status',1)->get();
         $this->driver = Driver::where('status',1)->get();
         $this->company = Company::all();

@@ -59,8 +59,8 @@ class EditMaintainances extends Component
             'assignment_id'  => 'required',
             'partstype_id'  => 'required',
             'payment' => 'required',
-            'garage_services_charges'=>'required'
-         
+            'garage_services_charges'=>'required',
+            'vehicleFileNo' => 'required'
 
         ]);
         $maintainance = $this->maintainance;
@@ -79,7 +79,10 @@ class EditMaintainances extends Component
     public function assignfileno(){
         $file = VehicleAssigning::where('id',$this->assignment_id)->first();
         
-        $this->vehicleFileNo = $file->vehicle->file_no;
+        //$this->vehicleFileNo = $file->vehicle->file_no;
+        if ($file && $file->vehicle) {
+            $this->vehicleFileNo = $file->vehicle->file_no;
+        }
     }
 
     public function totalAmount(){
