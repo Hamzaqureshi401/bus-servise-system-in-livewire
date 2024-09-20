@@ -31,6 +31,10 @@ class Vehicle extends Model
     {
         return $this->hasMany(Expense::class,'vehicle_file_no','file_no');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class , 'created_by');
+    }
 
 
 }

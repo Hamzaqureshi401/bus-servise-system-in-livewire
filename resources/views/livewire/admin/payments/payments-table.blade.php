@@ -14,11 +14,11 @@
             <tr>
                 <th>ID</th>
                 <th>Driver</th>
-                <th>Vehicle Assigning</th>
+                <!-- <th>Vehicle Assigning</th> -->
                 <th>Purpose</th>
                 <th>Amount</th>
                 <th>Company</th>
-                <th>Vehicle</th>
+                <!-- <th>Vehicle</th> -->
                 <th>Vehicle File No</th>
                 <th>Description</th>
             </tr>
@@ -28,12 +28,12 @@
                 <tr>
                     <td>{{ $payment->id }}</td>
                     <td>{{ $payment->driver->name  }}</td>
-                    <td>{{ $payment->vehicle_assigning_id }}</td>
-                    <td>{{ $payment->purpose }}</td>
+                    <!-- <td>{{ $payment->vehicle_assigning_id }}</td>
+                     --><td>{{ $payment->purpose }}</td>
                     <td>{{ $payment->amount }}</td>
                     <td>{{ $payment->company->name }}</td>
-                    <td>{{ $payment->vehicle->plate_no }}/{{ $payment->vehicle->owner_name }}/{{ $payment->vehicle->vehicle_model }}/{{ $payment->vehicle->fuel_type }}</td>
-                    <td>{{ $payment->vehicle_file_no }}</td>
+                    <!-- <td>{{ $payment->vehicle->plate_no }}/{{ $payment->vehicle->owner_name }}/{{ $payment->vehicle->vehicle_model }}/{{ $payment->vehicle->fuel_type }}</td>
+                     --><td>{{ $payment->vehicle_file_no }}</td>
                     <td>{{ $payment->description }}</td>
                 </tr>
             @empty

@@ -26,4 +26,8 @@ class Driver extends Model
     {
         return $this->hasMany(VehicleAssigning::class,'driver_id','id')->orderBy('sort_id','asc');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class , 'created_by');
+    }
 }
