@@ -55,6 +55,7 @@ class Payments extends Component
             'company_id'            => $this->selectedVehicleAssigning->company_id,
             'vehicle_id'            => $this->selectedVehicleAssigning->vehicle_id,
             'vehicle_file_no'       => $this->selectedVehicleAssigning->vehicle_file_no,
+            'user_id'               => Auth::id(),
         ]);
         
         return redirect()->route('admin.payments.view');

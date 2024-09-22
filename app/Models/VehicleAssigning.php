@@ -41,6 +41,10 @@ class VehicleAssigning extends Model
     {
         return $this->hasMany(Maintainance::class,'assignment_id','id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class , 'created_by');
+    }
 
     
 }
