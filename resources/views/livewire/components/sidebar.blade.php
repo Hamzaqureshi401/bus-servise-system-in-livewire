@@ -36,26 +36,26 @@ background-color: #171D3F !important;
                 </li>
                         
                 @if (Auth::user()->can('sales_report') || Auth::user()->can('day_wise_sales_report') || Auth::user()->can('item_wise_sales_report') || Auth::user()->can('customer_report'))
-                <li class="sidebar-item {{ Request::is('admin/reports*') ? 'active' : '' }}">
+                <li class="sidebar-item {{ Request::is('admin/reports/*') ? 'active' : '' }}">
                     <a data-bs-target="#reports" data-bs-toggle="collapse" class="sidebar-link collapsed">
                         <i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">{{$lang->data['reports']??'Reports'}}</span>&nbsp;
                     <span class="arabic-text">التقارير</span>
                     </a>
                     <ul id="reports" class="sidebar-dropdown list-unstyled collapse {{ Request::is('admin/reports*') ? 'show' : '' }}" data-bs-parent="#sidebar">
                         @if (Auth::user()->can('day_wise_sales_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/day-wise*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.daywise_report')}}">{{$lang->data['day_wise_report']??'Assigned Bus 
+                            <li class="sidebar-item {{ Request::is('admin/reports/busassigning-report') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.daywise_report')}}">{{$lang->data['day_wise_report']??'Assigned Bus 
                                     '}}&nbsp;
                                     <span class="aarabic-text">تفاصيل باصات</span>
                                     </a></li>
                         @endif
                         @if (Auth::user()->can('item_wise_sales_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/item-sales*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.item_sales_report')}}">{{$lang->data['item_wise_report']??'Salary & Petrol
+                            <li class="sidebar-item {{ Request::is('admin/reports/expense-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.item_sales_report')}}">{{$lang->data['item_wise_report']??'Salary & Petrol
                                      '}}&nbsp;
                                      <span class="arabic-text">عاش بترول</span>
                                      </a></li>
                         @endif
                         @if (Auth::user()->can('customer_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/customer*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.customer_report')}}">{{$lang->data['customer_report']??'Maintainance '}}&nbsp;
+                            <li class="sidebar-item {{ Request::is('admin/reports/maintainance-report*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.customer_report')}}">{{$lang->data['customer_report']??'Maintainance '}}&nbsp;
                             <span class="arabic-text">صيانة</span>
                             </a></li>
                         @endif
@@ -93,13 +93,13 @@ background-color: #171D3F !important;
                     </a>
                     <ul id="driver" class="sidebar-dropdown list-unstyled collapse {{ Request::is('admin/driver*') ? 'show' : '' }}" data-bs-parent="#sidebar">
 
-                <li class="sidebar-item {{ Request::is('admin/driver*') ? 'active' : '' }}">
+                <li class="sidebar-item {{ Request::is('admin/drivers') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.driver') }}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{$lang->data['driver']??'Drivers '}} </span> &nbsp;
                     <span class="arabic-text">سائق</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ Request::is('admin/driver*') ? 'active' : '' }}">
+                <li class="sidebar-item {{ Request::is('admin/driver/assigned*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.assigned.drivers') }}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{$lang->data['driver']??'Assigned Drivers '}} </span> &nbsp;
                     <span class="arabic-text">سائق</span>

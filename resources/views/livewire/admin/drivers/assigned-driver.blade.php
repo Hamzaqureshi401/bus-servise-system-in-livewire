@@ -24,7 +24,10 @@
                                 <th class="tw-20">{{$lang->data['registration_no']??'Registration No'}}</th>
                                 <th class="tw-20">{{$lang->data['monthly_salary']??'Monthly Salary'}}</th>
                                 <th class="tw-20">{{$lang->data['Status']??'Status'}}</th>
+                                <th class="tw-20">Busses Assigned</th>
+                                
                                 <th class="tw-10">{{$lang->data['actions']??'Actions'}}</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +45,13 @@
                                         <span style="font-weight: bold; color: green;">Free</span>
                                     @endif
                                 </td>
+                                <td>@foreach($item->assigning()->get() as $a)
+                                    
+                                 File No:{{ $a->vehicle->file_no ?? '--' }} | Plate No:{{ $a->vehicle->plate_no ?? '--'  }} | Owner:{{ $a->vehicle->owner_name ?? '--'  }} | Type:{{ $a->vehicle->vehicle_type ?? '--'  }} | Model:{{ $a->vehicle->vehicle_model ?? '--'  }} | Fuel:{{ $a->vehicle->fuel_type ?? '--'  }}
+                                 <br>
+
+                                 @endforeach
+                             </td>
                                 <td>
                                     @if(Auth::user()->can('edit_driver'))
                                     <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#EditModalCustomer" wire:click='edit({{$item}})'>{{$lang->data['edit']??'Edit'}}</a>

@@ -88,8 +88,12 @@
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
+            $('.tableh').DataTable();
         });
         $('#table').dataTable({
+            "lengthMenu": [15, 25, 50, 100]
+        });
+        $('.tableh').dataTable({
             "lengthMenu": [15, 25, 50, 100]
         });
 

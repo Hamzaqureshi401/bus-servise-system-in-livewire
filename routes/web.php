@@ -75,6 +75,15 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['admin','install']], functi
     Route::get('/admin/reports/drivers', DriverReport::class)->name('admin.reports.drivers');
     Route::get('/admin/driver/assigned', AssignedDriver::class)->name('admin.assigned.drivers');
 
+Route::get('/migrate', function () {
+    // Assuming you have authentication and possibly middleware to check user roles
+    // Ensure only authorized users can access this route
+
+Artisan::call('migrate');
+
+
+    return redirect()->back()->with('success', 'Caches cleared successfully!');
+})->name('migrate')->middleware('auth'); // Example: using the 'auth' middleware
 
 Route::group(['prefix' => 'install/'], function () {
     Route::get('/', \App\Http\Livewire\Installer\Installer::class)->name('install');

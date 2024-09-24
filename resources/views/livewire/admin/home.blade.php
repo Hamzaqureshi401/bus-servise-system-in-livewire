@@ -12,7 +12,7 @@
         <h3><strong>{{$lang->data['expense'] ?? 'Payments'}}</strong></h3>
     </div>
 
-    <table class="table table-striped">
+    <table class="table tableh table-striped">
         <thead>
             <tr>
                 <!-- <th>Sl</th>
@@ -61,7 +61,7 @@
     <div class="col-auto d-none d-sm-block">
         <h3><strong>{{$lang->data['expense'] ?? 'Expences'}}</strong></h3>
     </div>
-<table class="table table-striped table-bordered mb-0">
+<table class="table tableh table-striped table-bordered mb-0">
                         <thead class="bg-secondary-light">
                         <tr>
                             <!-- <th class="tw-5">{{$lang->data['sl'] ?? 'Sl'}}</th>
@@ -111,7 +111,7 @@
 <div class="col-auto d-none d-sm-block">
         <h3><strong>{{$lang->data['salary'] ?? 'Salary'}}</strong></h3>
     </div>
-<table class="table table-striped table-bordered mb-0">
+<table class="table tableh table-striped table-bordered mb-0">
                         <thead class="bg-secondary-light">
                         <tr>
                             <!-- <th class="tw-5">{{$lang->data['sl'] ?? 'Sl'}}</th>
@@ -161,7 +161,7 @@
                 <div class="col-auto d-none d-sm-block">
             <h3><strong>{{$lang->data['maintainance']??'Maintainance'}}</strong></h3>
         </div>
-<table class="table datatable table-striped table-bordered mb-0">
+<table class="table tableh datatable table-striped table-bordered mb-0">
                         <thead class="bg-secondary-light">
                             <tr>
                                 <th class="tw-15">{{$lang->data['date'] ?? 'Date'}}</th>
@@ -202,7 +202,7 @@
                 <div class="col-auto d-none d-sm-block">
         <h3><strong>{{$lang->data['drivres'] ?? 'Drivers'}}</strong></h3>
     </div>
-    <table class="table table-striped table-bordered mb-0">
+    <table class="table tableh table-striped table-bordered mb-0">
                         <thead class="bg-secondary-light">
                             <tr>
                                 <!-- <th class="tw-5">{{$lang->data['sl']??'Sl'}}</th>
@@ -214,6 +214,7 @@
                                 <th class="tw-20">{{$lang->data['registration_no']??'Registration No'}}</th>
                                 <th class="tw-20">{{$lang->data['monthly_salary']??'Monthly Salary'}}</th>
                                 <th class="tw-20">{{$lang->data['Status']??'Status'}}</th>
+                                <th class="tw-20">Busses Assigned</th>
                                 <!-- <th class="tw-10">{{$lang->data['actions']??'Actions'}}</th> -->
                             </tr>
                         </thead>
@@ -234,6 +235,15 @@
                                         <span style="font-weight: bold; color: green;">Free</span>
                                     @endif
                                 </td>
+                                    
+                                
+                                <td>@foreach($item->assigning()->get() as $a)
+                                    
+                                 File No:{{ $a->vehicle->file_no ?? '--' }} | Plate No:{{ $a->vehicle->plate_no ?? '--'  }} | Owner:{{ $a->vehicle->owner_name ?? '--'  }} | Type:{{ $a->vehicle->vehicle_type ?? '--'  }} | Model:{{ $a->vehicle->vehicle_model ?? '--'  }} | Fuel:{{ $a->vehicle->fuel_type ?? '--'  }}
+                                 <br>
+
+                                 @endforeach
+                             </td>
                                 <!-- <td>
                                     @if(Auth::user()->can('edit_driver'))
                                     <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#EditModalCustomer" wire:click='edit({{$item}})'>{{$lang->data['edit']??'Edit'}}</a>
@@ -252,7 +262,7 @@
                     <div class="col-auto d-none d-sm-block">
         <h3><strong>{{$lang->data['expense'] ?? 'Vehicle Assigning List'}}</strong></h3>
     </div>
-    <table class="table table-striped table-bordered mb-0">
+    <table class="table tableh table-striped table-bordered mb-0">
                     <thead class="bg-secondary-light">
                         <tr>
                             <!-- <th class="tw-5">{{$lang->data['sl'] ?? 'Sl'}}</th>
@@ -311,7 +321,7 @@
                 <div class="col-auto d-none d-sm-block">
             <h3><strong>{{$lang->data['bus']??'Bus'}}</strong></h3>
         </div>
-<table class="table table-striped table-bordered mb-0">
+<table class="table tableh table-striped table-bordered mb-0">
                         <thead class="bg-secondary-light">
                             <tr>
                                 <!-- <th class="tw-5">{{$lang->data['sl']??'Sl'}}</th>
