@@ -1,6 +1,7 @@
 <?php return array (
   'admin.alwaqat-buses.alwaqat-buses' => 'App\\Http\\Livewire\\Admin\\AlwaqatBuses\\AlwaqatBuses',
   'admin.companies.companies' => 'App\\Http\\Livewire\\Admin\\Companies\\Companies',
+  'admin.drivers.assigned-driver' => 'App\\Http\\Livewire\\Admin\\Drivers\\AssignedDriver',
   'admin.drivers.drivers' => 'App\\Http\\Livewire\\Admin\\Drivers\\Drivers',
   'admin.employees.employees' => 'App\\Http\\Livewire\\Admin\\Employees\\Employees',
   'admin.expense-types.expense-types' => 'App\\Http\\Livewire\\Admin\\ExpenseTypes\\ExpenseTypes',

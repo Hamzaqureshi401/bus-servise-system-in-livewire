@@ -29,7 +29,8 @@ class Home extends Component
     public function mount()
     {
         $this->data['payments'] = Payment::latest()->paginate(5);
-        $this->data['expenses'] = Expense::latest()->paginate(5);
+        $this->data['expenses'] = Expense::whereExpenseTypeId(1)->latest()->paginate(5);
+        $this->data['sellary'] = Expense::whereExpenseTypeId(2)->latest()->paginate(5);
         $this->data['drivers']  = Driver::latest()->paginate(5);
         $this->data['assignings'] = VehicleAssigning::latest()->paginate(5);
         $this->data['vehicles']  = Vehicle::latest()->paginate(5);

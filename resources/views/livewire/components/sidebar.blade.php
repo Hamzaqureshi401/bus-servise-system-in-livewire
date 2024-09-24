@@ -84,13 +84,29 @@ background-color: #171D3F !important;
                 @endif
     
                 <!-- Drivers -->
+
                 @if (Auth::user()->can('driver_list'))
+                 <li class="sidebar-item {{ Request::is('admin/driver*') ? 'active' : '' }}">
+                    <a data-bs-target="#driver" data-bs-toggle="collapse" class="sidebar-link collapsed">
+                        <i class="align-middle" data-feather="bar-chart"></i> <span class="align-middle">{{$lang->data['driver']??'Drivers'}}</span>&nbsp;
+                    <span class="arabic-text"></span>
+                    </a>
+                    <ul id="driver" class="sidebar-dropdown list-unstyled collapse {{ Request::is('admin/driver*') ? 'show' : '' }}" data-bs-parent="#sidebar">
+
                 <li class="sidebar-item {{ Request::is('admin/driver*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.driver') }}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{$lang->data['driver']??'Drivers '}} </span> &nbsp;
                     <span class="arabic-text">سائق</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ Request::is('admin/driver*') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('admin.assigned.drivers') }}">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{$lang->data['driver']??'Assigned Drivers '}} </span> &nbsp;
+                    <span class="arabic-text">سائق</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
                 @endif
                 
                 <!-- Vehicle -->
