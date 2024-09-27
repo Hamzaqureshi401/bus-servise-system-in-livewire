@@ -25,8 +25,8 @@
                                 <label class="form-label">{{$lang->data['driver'] ?? 'Driver '}}</label>
                                 <select class="form-control" wire:model="driver_id">
                                     <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
-                                    @foreach ($vehicle as $item)
-                                    <option value="{{$item->driver_id}}">{{$item->driver->name}}</option>
+                                    @foreach ($driver as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -34,9 +34,9 @@
                                 <label class="form-label">{{$lang->data['vehicle'] ?? 'Bus File no. '}}</label>
                                 <select class="form-control" wire:model="vehicle_file_no">
                                     <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
-                                    @foreach ($vehicle as $v)
-                                    <option value="{{$v->vehicle_file_no }}">
-                                        {{$v->vehicle_file_no}}
+                                    @foreach ($vehicles as $v)
+                                    <option value="{{$v->file_no }}">
+                                        {{$v->file_no}}
                                     </option>
                                     @endforeach
                                 </select>
@@ -58,9 +58,9 @@
                                 <label class="form-label">{{$lang->data['Company'] ?? 'Company '}}</label>
                                 <select class="form-control" wire:model="company_id">
                                     <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
-                                    @foreach ($vehicle as $v)
-                                    <option value="{{$v->company_id }}">
-                                        {{$v->company->name}}
+                                    @foreach ($company as $v)
+                                    <option value="{{$v->id }}">
+                                        {{$v->name}}
                                     </option>
                                     @endforeach
                                 </select>

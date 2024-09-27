@@ -1,27 +1,72 @@
 <?php
 
 namespace App\Http\Livewire\Admin\Payments;
-use Livewire\WithPagination;
-use App\Models\Payment;
 
 use Livewire\Component;
+use App\Models\Payment;
+use App\Models\Driver;
+use App\Models\VehicleAssigning;
 
 class PaymentsTable extends Component
 {
-    use WithPagination;
+    public $payments;
+    public $selectedPayment;
+    public $showEditModal = false;
+    public $drivers, $vehicleAssigning;
+    public $driver_id, $vehicle_assigning_id, $purpose, $amount, $description;
 
-    public $searchTerm;
+    public function mount()
+    {
+        $this->payments = Payment::all();
+        $this->drivers = Driver::all(); // Fetch drivers for the dropdown
+        $this->vehicleAssigning = VehicleAssigning::all(); // Fetch vehicle assignments
+    }
+
+    public function openEditModal($paymentId)
+    {
+        $this->selectedPayment = Payment::findOrFail($paymentId);
+        $this->driver_id = $this->selectedPayment->driver_id;
+        $this->vehicle_assigning_id = $this->selectedPayment->vehicle_assigning_id;
+        $this->purpose = $this->selectedPayment->purpose;
+        $this->amount = $this->selectedPayment->amount;
+        $this->description = $this->selectedPayment->description;
+        $this->showEditModal = true;
+    }
+
+    public function updatePayment()
+    {
+        $this->validate([
+            'driver_id' => 'required|exists:drivers,id',
+            'vehicle_assigning_id' => 'required|exists:vehicle_assignings,id',
+            'purpose' => 'required|string|max:255',
+            'amount' => 'required|numeric',
+            'description' => 'nullable|string',
+        ]);
+        $this->selectedPayment->update([
+            'driver_id' => $this->driver_id,
+            'vehicle_assigning_id' => $this->vehicle_assigning_id,
+            'purpose' => $this->purpose,
+            'amount' => $this->amount,
+            'description' => $this->description,
+        ]);
+
+       $this->emit('closemodal');
+        $this->dispatchBrowserEvent(
+            'alert', ['type' => 'success',  'message' => 'Payment has been updated!']);
+        $this->payments = Payment::all(); // Refresh the payment list
+    }
 
     public function render()
     {
-        // Fetch payments with optional search functionality
-        $payments = Payment::orWhere('purpose', 'like', '%' . $this->searchTerm . '%')
-                    ->orWhere('amount', 'like', '%' . $this->searchTerm . '%')
-                    ->orWhere('vehicle_file_no', 'like', '%' . $this->searchTerm . '%')
-                    ->paginate(10);
-
         return view('livewire.admin.payments.payments-table', [
-            'payments' => $payments
+            'payments' => $this->payments
         ]);
+    }
+
+    public function deletePayment($paymentId ){
+        $this->selectedPayment = Payment::findOrFail($paymentId)->delete();
+        $this->dispatchBrowserEvent(
+            'alert', ['type' => 'success',  'message' => 'Payment has been Deleted!']);
+        $this->payments = Payment::all(); // Refresh the payment list
     }
 }

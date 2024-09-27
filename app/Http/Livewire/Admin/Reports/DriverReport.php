@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Admin\Reports;
 
 use Carbon\Carbon;
 use App\Models\Payment;
+use App\Models\Driver;
+use App\Models\Company;
+use App\Models\Vehicle;
 use App\Exports\DaywiseReportExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -11,7 +14,8 @@ use Livewire\Component;
 
 class DriverReport extends Component
 {
-    public $start_date, $end_date, $driver_id, $vehicle_file_no, $purpose, $company_id;
+    public $start_date, $end_date, $driver_id, $vehicle_file_no, $purpose, $company_id , $driver ,$company,
+$vehicles;
     public $payments = [];
     public $lang, $vehicle = [];
 
@@ -20,6 +24,9 @@ class DriverReport extends Component
         $this->start_date = Carbon::today()->startOfMonth()->toDateString();
         $this->end_date = Carbon::today()->toDateString();
         $this->vehicle = Payment::with('driver', 'company', 'vehicle')->get();
+        $this->driver = Driver::get();
+        $this->company = Company::get();
+        $this->vehicles = Vehicle::get();
         $this->lang = getTranslation();
 
         if (!Auth::user()->can('customer_report')) {
