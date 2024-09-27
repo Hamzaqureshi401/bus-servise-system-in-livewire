@@ -17,14 +17,15 @@
             <tr>
                 <!-- <th>Sl</th>
                  --><th>Date</th>
-                <th>Driver</th>
                 <th>Added By</th>
+                <th>Driver</th>
+                
                 <!-- <th>Vehicle Assigning</th> -->
                 <th>Purpose</th>
                 <th>Amount</th>
                 <th>Company</th>
                 <!-- <th>Vehicle</th> -->
-                <th>Vehicle File No</th>
+                <th align="center">Vehicle File No</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -35,15 +36,16 @@
                     <!-- <td>{{ $loop->index + 1 }}</td>
                      --><td>{{ date('d/m/Y', strtotime($payment->created_at)) }}</td>
                             
-                    <td>{{ $payment->driver->name  }}</td>
                     <td>{{ $payment->user->name ?? '--' }}</td>
+                    <td>{{ $payment->driver->name  }}</td>
+                    
                     
                     <!-- <td>{{ $payment->vehicle_assigning_id }}</td>
                      --><td>{{ $payment->purpose }}</td>
                     <td>{{ $payment->amount }}</td>
                     <td>{{ $payment->company->name }}</td>
                     <!-- <td>{{ $payment->vehicle->plate_no }}/{{ $payment->vehicle->owner_name }}/{{ $payment->vehicle->vehicle_model }}/{{ $payment->vehicle->fuel_type }}</td>
-                     --><td>{{ $payment->vehicle_file_no }}</td>
+                     --><td align="center">{{ $payment->vehicle_file_no }}</td>
                     <td>{{ $payment->description }}</td>
                 </tr>
             @empty
@@ -55,9 +57,7 @@
     </table>
 
     <!-- Pagination links -->
-    <div class="mt-4">
-        {{ $data['payments']->links() }}
-    </div>
+    
     <div class="col-auto d-none d-sm-block">
         <h3><strong>{{$lang->data['expense'] ?? 'Expences'}}</strong></h3>
     </div>

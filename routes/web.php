@@ -84,6 +84,18 @@ Artisan::call('migrate');
 
     return redirect()->back()->with('success', 'Caches cleared successfully!');
 })->name('migrate')->middleware('auth'); // Example: using the 'auth' middleware
+Route::get('/clear', function () {
+    // Assuming you have authentication and possibly middleware to check user roles
+    // Ensure only authorized users can access this route
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('config:cache');
+
+    return redirect()->back()->with('success', 'Caches cleared successfully!');
+})->name('clear')->middleware('auth'); // Example: using the 'auth' middleware
 
 Route::group(['prefix' => 'install/'], function () {
     Route::get('/', \App\Http\Livewire\Installer\Installer::class)->name('install');

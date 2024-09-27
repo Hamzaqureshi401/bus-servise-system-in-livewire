@@ -19,6 +19,7 @@ class Payment extends Model
         'company_id',
         'vehicle_id',
         'vehicle_file_no',
+        'user_id'
     ];
 
     // If you have relationships, define them here (Optional)

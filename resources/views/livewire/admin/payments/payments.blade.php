@@ -2,7 +2,7 @@
     
 <div class="row mb-2 mb-xl-3">
     <div class="col-auto d-none d-sm-block">
-        <h3><strong>{{$lang->data['create_maintainance'] ?? 'Vehicle Assignment'}}</strong></h3>
+        <h3><strong>{{$lang->data['create_maintainance'] ?? 'New Payment'}}</strong></h3>
     </div>
 
     <div class="col-auto ms-auto text-end mt-n1">
@@ -29,7 +29,7 @@
                     @enderror
                 </div>
                 <div class="mb-3 col-md-6">
-                    <label class="form-label">{{ 'Vehicle Assigning '}}<span class="text-danger"><strong>*</strong></span></label>
+                    <label class="form-label">{{ 'Assigned Vehicle to Driver '}}<span class="text-danger"><strong>*</strong></span></label>
                     <select class="form-control" wire:change="vehicleAssigning" wire:model="vehicleAssigning_id">
                         <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
                         @foreach ($vehicleAssigning as $item)

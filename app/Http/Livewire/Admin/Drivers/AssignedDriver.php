@@ -15,7 +15,8 @@ class AssignedDriver extends Component
 
     public function render()
     {
-        $this->drivers = Driver::latest()->whereStatus(1)->get();
+       $this->drivers = Driver::whereStatus(1)->orderBy('created_at', 'asc')->get();
+
         return view('livewire.admin.drivers.assigned-driver');
     }
      public function mount()

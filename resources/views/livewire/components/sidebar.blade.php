@@ -75,8 +75,8 @@ background-color: #171D3F !important;
                             </a></li>
                         @endif
                         @if (Auth::user()->can('customer_report'))
-                            <li class="sidebar-item {{ Request::is('admin/reports/drivers*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.reports.drivers')}}">{{$lang->data['customer_report']??'Driver Reports '}}&nbsp;
-                            <span class="aarabic-text">مالك شركات</span>
+                            <li class="sidebar-item {{ Request::is('admin/reports/drivers*') ? 'active' : '' }} "><a class="sidebar-link" href="{{route('admin.reports.drivers')}}">{{$lang->data['customer_report']??'Payment Report '}}&nbsp;
+                            <span class="aarabic-text">تقرير الدفع</span>
                             </a></li>
                         @endif
                     </ul>
@@ -102,7 +102,7 @@ background-color: #171D3F !important;
                 <li class="sidebar-item {{ Request::is('admin/driver/assigned*') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.assigned.drivers') }}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">{{$lang->data['driver']??'Assigned Drivers '}} </span> &nbsp;
-                    <span class="arabic-text">سائق</span>
+                    <span class="arabic-text">السائق المعين</span>
                     </a>
                 </li>
             </ul>
@@ -129,6 +129,12 @@ background-color: #171D3F !important;
                     </a>
                 </li>
                 @endif
+             <li class="sidebar-item {{ Request::is('admin/payments*') ? 'active' : '' }}">
+                <a class="sidebar-link " href="{{ route('admin.payments.view') }}">
+                    <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">{{$lang->data['Payments']??'Payments'}}</span>&nbsp;
+                <span class="arabic-text">المدفوعات</span>
+                </a>
+            </li>
                 <!-- Project Assigning -->
                 @if (Auth::user()->can('assigning_list'))
                 <li class="sidebar-item {{ Request::is('admin/VehicleAssignings*') ? 'active' : '' }}">
@@ -226,12 +232,7 @@ background-color: #171D3F !important;
                 </li>
                 @endif
             
-            <li class="sidebar-item {{ Request::is('admin/payments*') ? 'active' : '' }}">
-                <a class="sidebar-link " href="{{ route('admin.payments.view') }}">
-                    <i class="align-middle" data-feather="globe"></i> <span class="align-middle">{{$lang->data['Payments']??'Payments'}}</span>&nbsp;
-                <span class="arabic-text"></span>
-                </a>
-            </li>
+
             
             @if (Auth::user()->can('account_settings') || Auth::user()->can('app_settings'))
             <li class="sidebar-item {{ Request::is('admin/settings*') ? 'active' : '' }}">

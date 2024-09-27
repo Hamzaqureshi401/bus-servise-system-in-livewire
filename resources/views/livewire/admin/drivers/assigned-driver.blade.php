@@ -1,15 +1,10 @@
 <div>
     <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
-            <h3><strong>{{$lang->data['driver']??'Driver'}}</strong></h3>
+            <h3><strong>{{$lang->data['driver']??' Assigned Driver List'}}</strong></h3>
         </div>
 
-        <div class="col-auto ms-auto text-end mt-n1">
-            @if(Auth::user()->can('add_driver'))
-            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCustomer" wire:click="resetFields">{{$lang->data['new_driver']??'New
-                Driver'}}</a>
-            @endif
-        </div>
+        
     </div>
     <div class="row">
         <div class="col-12">
@@ -20,13 +15,14 @@
                             <tr>
                                 <th class="tw-5">{{$lang->data['sl']??'Sl'}}</th>
                                 <th class="tw-20">{{$lang->data['name']??'Name'}}</th>
-                                <th class="tw-20">{{$lang->data['mobile_no']??'Mobile No.'}}</th>
-                                <th class="tw-20">{{$lang->data['registration_no']??'Registration No'}}</th>
-                                <th class="tw-20">{{$lang->data['monthly_salary']??'Monthly Salary'}}</th>
-                                <th class="tw-20">{{$lang->data['Status']??'Status'}}</th>
+                                <th class="tw-10">{{$lang->data['mobile_no']??'Mobile No.'}}</th>
+                                <th class="tw-10">{{$lang->data['registration_no']??'Registration No'}}</th>
+                                <th class="tw-10">{{$lang->data['monthly_salary']??'Monthly Salary'}}</th>
                                 <th class="tw-20">Busses Assigned</th>
+                              
                                 
-                                <th class="tw-10">{{$lang->data['actions']??'Actions'}}</th>
+                                
+                      
 
                             </tr>
                         </thead>
@@ -38,13 +34,6 @@
                                 <td>{{$item->mobile_no}}</td>
                                 <td>{{ date('d/m/Y', strtotime($item->registration_date)) }}</td>
                                 <td>{{$item->monthly_salary}}</td>
-                               <td>
-                                    @if ($item->status == 1)
-                                        <span style="font-weight: bold; color: blue;">Booked</span>
-                                    @else
-                                        <span style="font-weight: bold; color: green;">Free</span>
-                                    @endif
-                                </td>
                                 <td>@foreach($item->assigning()->get() as $a)
                                     
                                  File No:{{ $a->vehicle->file_no ?? '--' }} | Plate No:{{ $a->vehicle->plate_no ?? '--'  }} | Owner:{{ $a->vehicle->owner_name ?? '--'  }} | Type:{{ $a->vehicle->vehicle_type ?? '--'  }} | Model:{{ $a->vehicle->vehicle_model ?? '--'  }} | Fuel:{{ $a->vehicle->fuel_type ?? '--'  }}
@@ -52,14 +41,6 @@
 
                                  @endforeach
                              </td>
-                                <td>
-                                    @if(Auth::user()->can('edit_driver'))
-                                    <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#EditModalCustomer" wire:click='edit({{$item}})'>{{$lang->data['edit']??'Edit'}}</a>
-                                    @endif
-                                    @if(Auth::user()->can('edit_driver'))
-                                    <a href="#" class="btn btn-sm btn-danger" wire:click="delete({{$item}})">{{$lang->data['delete']??'Delete'}}</a>
-                                    @endif
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

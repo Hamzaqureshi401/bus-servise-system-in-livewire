@@ -2,7 +2,7 @@
 
     <div class="row mb-2 mb-xl-3">
         <div class="col-auto d-none d-sm-block">
-            <h3><strong>{{$lang->data['customer_report'] ?? 'Maintainance Report'}}</strong></h3>
+            <h3><strong>{{$lang->data['customer_report'] ?? 'Payment Report'}}</strong></h3>
         </div>
     </div>
 
