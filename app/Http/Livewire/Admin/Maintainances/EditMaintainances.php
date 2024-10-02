@@ -40,7 +40,7 @@ class EditMaintainances extends Component
         }
         $this->date = $this->maintainance->date;
         $this->assignment_id = $this->maintainance->assignment_id;
-        $this->vehicle_file_no= $this->maintainance->vehicleFileNo;
+        $this->vehicle_file_no= $this->maintainance->vehicle_file_no;
         $this->partstype_id = $this->maintainance->parts_type_id;
         $this->payment= $this->maintainance->payment;
         $this->garage_services_charges= $this->maintainance->garage_services_charges;
@@ -54,19 +54,21 @@ class EditMaintainances extends Component
     /* update product data */
     public function update()
     {
+        //dd($this->maintainance);
+
         $this->validate([
             'date'  => 'required',
             'assignment_id'  => 'required',
             'partstype_id'  => 'required',
             'payment' => 'required',
             'garage_services_charges'=>'required',
-            'vehicleFileNo' => 'required'
+        //    'vehicleFileNo' => 'required'
 
         ]);
         $maintainance = $this->maintainance;
         $maintainance->date = $this->date;
         $maintainance->assignment_id = $this->assignment_id;
-        $maintainance->vehicle_file_no= $this->vehicleFileNo;
+        $maintainance->vehicle_file_no= $maintainance->vehicle_file_no;
         $maintainance->parts_type_id = $this->partstype_id;
         $maintainance->payment= $this->payment;
         $maintainance->garage_services_charges= $this->garage_services_charges;

@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Added By</th>
                 <th>Driver</th>
                 <th>Purpose</th>
                 <th>Amount</th>
@@ -15,28 +16,39 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($payments as $payment)
-                <tr>
-                    <td>{{ $payment->id }}</td>
-                    <td>{{ $payment->driver->name }}</td>
-                    <td>{{ $payment->purpose }}</td>
-                    <td>{{ $payment->amount }}</td>
-                    <td>{{ $payment->company->name }}</td>
-                    <td>{{ $payment->vehicle_file_no }}</td>
-                    <td>{{ $payment->description }}</td>
-                    <td>
-                        <!-- Edit Button triggers modal -->
-                        <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#EditVehicle" wire:click="openEditModal({{ $payment->id }})" class="btn btn-sm btn-primary">Edit</a >
+    @forelse($payments as $payment)
+        <tr>
+            <td>{{ $payment->id }}</td>
+            <td>{{ $payment->user->name ?? '--' }}</td>
+            <td>{{ $payment->driver->name }}</td>
+            <td>{{ $payment->purpose }}</td>
+            <td>{{ $payment->amount }}</td>
+            <td>{{ $payment->company->name }}</td>
+            <td>{{ $payment->vehicle_file_no }}</td>
+            <td>{{ $payment->description }}</td>
+            <td>
+                <!-- Edit Button triggers modal -->
+                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#EditVehicle" wire:click="openEditModal({{ $payment->id }})">Edit</a>
+                
+                <a href="#" class="btn btn-sm btn-danger" wire:click="deletePayment({{ $payment->id }})">Delete</a>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="9" class="text-center">No payments found.</td>
+        </tr>
+    @endforelse
+</tbody>
 
-                        <a href="#" class="btn btn-sm btn-danger" wire:click="deletePayment({{ $payment->id }})" class="btn btn-sm btn-primary">Delete</a >
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="9" class="text-center">No payments found.</td>
-                </tr>
-            @endforelse
-        </tbody>
+<!-- Add tfoot for subtotal -->
+<tfoot>
+    <tr>
+        <td colspan="4" class="text-right"><strong>Total Amount:</strong></td>
+        <td><strong>{{ $payments->sum('amount') }}</strong></td>
+        <td colspan="4"></td>
+    </tr>
+</tfoot>
+
     </table>
 
 <!-- Edit Payment Modal -->

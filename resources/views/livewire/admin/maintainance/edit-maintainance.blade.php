@@ -85,10 +85,10 @@
             
 
     
-                    <button type="button" class="btn btn-primary float-end" :disabled="isUploading == true" wire:click.prevent="update">{{$lang->data['submit'] ?? 'Submit'}}</button>
+                    <button type="button" class="btn btn-primary float-end"  wire:click="update">{{$lang->data['submit'] ?? 'Submit'}}</button>
                 </form>
             </div>
         </div>
     </div>
     </div>
-    
+     

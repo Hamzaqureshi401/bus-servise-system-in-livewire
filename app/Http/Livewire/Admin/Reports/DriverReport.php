@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Driver;
 use App\Models\Company;
 use App\Models\Vehicle;
+use App\Models\User;
 use App\Exports\DaywiseReportExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,7 +15,7 @@ use Livewire\Component;
 
 class DriverReport extends Component
 {
-    public $start_date, $end_date, $driver_id, $vehicle_file_no, $purpose, $company_id , $driver ,$company,
+    public $start_date, $user_id, $end_date, $driver_id, $vehicle_file_no, $purpose, $company_id , $driver ,$company, $user,
 $vehicles;
     public $payments = [];
     public $lang, $vehicle = [];
@@ -23,9 +24,10 @@ $vehicles;
     {
         $this->start_date = Carbon::today()->startOfMonth()->toDateString();
         $this->end_date = Carbon::today()->toDateString();
-        $this->vehicle = Payment::with('driver', 'company', 'vehicle')->get();
+        $this->vehicle = Payment::with('driver', 'company', 'vehicle' , 'user')->get();
         $this->driver = Driver::get();
         $this->company = Company::get();
+        $this->user = User::get();
         $this->vehicles = Vehicle::get();
         $this->lang = getTranslation();
 
@@ -43,35 +45,43 @@ $vehicles;
     }
 
     public function getData()
-    {
-        $query = Payment::query();
+{
+    $query = Payment::query();
 
-        if ($this->start_date) {
-            $query->where('created_at', '>=', $this->start_date . ' 00:00:00');
-        }
-
-        if ($this->end_date) {
-            $query->where('created_at', '<=', $this->end_date . ' 23:59:59'); // Include the entire end date
-        }
-
-        if ($this->driver_id) {
-            $query->where('driver_id', $this->driver_id);
-        }
-
-        if ($this->vehicle_file_no) {
-            $query->where('vehicle_file_no', $this->vehicle_file_no);
-        }
-
-        if ($this->purpose) {
-            $query->where('purpose', $this->purpose);
-        }
-
-        if ($this->company_id) {
-            $query->where('company_id', $this->company_id);
-        }
-
-        $this->payments = $query->with('driver', 'company', 'vehicle')->get();
+    if ($this->start_date) {
+        $query->where('created_at', '>=', $this->start_date . ' 00:00:00');
     }
+
+    if ($this->end_date) {
+        $query->where('created_at', '<=', $this->end_date . ' 23:59:59');
+    }
+
+    if ($this->driver_id) {
+        $query->where('driver_id', $this->driver_id);
+    }
+
+    if ($this->vehicle_file_no) {
+        $query->where('vehicle_file_no', $this->vehicle_file_no);
+    }
+
+    if ($this->purpose) {
+        $query->where('purpose', $this->purpose);
+    }
+
+    if ($this->company_id) {
+        $query->where('company_id', $this->company_id);
+    }
+
+    if ($this->user_id) {
+        $query->where('user_id', $this->user_id);
+    }
+
+    // Order the records by vehicle_file_no in ascending order
+    $this->payments = $query->with('driver', 'company', 'vehicle')
+                            ->orderBy('vehicle_file_no', 'asc')
+                            ->get();
+}
+
 
 
     public function exportToExcel()

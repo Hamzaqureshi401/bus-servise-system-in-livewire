@@ -27,16 +27,33 @@ class Home extends Component
     }
     /* process before render */
     public function mount()
-    {
-        $this->data['payments'] = Payment::latest()->paginate(5);
-        $this->data['expenses'] = Expense::whereExpenseTypeId(1)->latest()->paginate(5);
-        $this->data['sellary'] = Expense::whereExpenseTypeId(2)->latest()->paginate(5);
-        $this->data['drivers']  = Driver::latest()->paginate(5);
-        $this->data['assignings'] = VehicleAssigning::latest()->paginate(5);
-        $this->data['vehicles']  = Vehicle::latest()->paginate(5);
-        $this->data['maintainances']  = Maintainance::latest()->paginate(5);
+{
+    // Fetch data from the models
+    $this->data['payments'] = Payment::latest()->paginate(5);
+    $this->data['expenses'] = Expense::whereExpenseTypeId(1)->latest()->paginate(5);
+    $this->data['sellary'] = Expense::whereExpenseTypeId(2)->latest()->paginate(5);
+    $this->data['drivers']  = Driver::latest()->paginate(5);
+    $this->data['assignings'] = VehicleAssigning::latest()->paginate(5);
+    $this->data['vehicles']  = Vehicle::latest()->paginate(5);
+    $this->data['maintainances']  = Maintainance::latest()->paginate(5);
 
-        $this->lang = getTranslation();
-    }
+    // Get the latest updated timestamps for summary
+    $this->latestUpdates = [
+        'Payments' => $this->data['payments']->isNotEmpty() ? $this->data['payments']->max('updated_at') : null,
+        'Expenses' => $this->data['expenses']->isNotEmpty() ? $this->data['expenses']->max('updated_at') : null,
+        'Sellary' => $this->data['sellary']->isNotEmpty() ? $this->data['sellary']->max('updated_at') : null,
+        'Drivers' => $this->data['drivers']->isNotEmpty() ? $this->data['drivers']->max('updated_at') : null,
+        'Assignments' => $this->data['assignings']->isNotEmpty() ? $this->data['assignings']->max('updated_at') : null,
+        'Vehicles' => $this->data['vehicles']->isNotEmpty() ? $this->data['vehicles']->max('updated_at') : null,
+        'Maintainances' => $this->data['maintainances']->isNotEmpty() ? $this->data['maintainances']->max('updated_at') : null,
+    ];
+
+    // Convert to array of models and their last updated timestamps
+    $this->latestUpdates = array_filter($this->latestUpdates); // Remove null entries
+    arsort($this->latestUpdates); // Sort by latest update first
+
+    $this->lang = getTranslation();
+}
+
 
 }

@@ -65,6 +65,18 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-md-3">
+                                <label class="form-label">{{$lang->data['User'] ?? 'Added By '}}</label>
+                                <select class="form-control" wire:model="user_id">
+                                    <option selected value="">{{$lang->data['choose'] ?? 'Choose...'}}</option>
+                                    @foreach ($user as $v)
+                                    <option value="{{$v->id }}">
+                                        {{$v->name}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
 
                             <div class="col-md-3 d-n-p">
                                 <br>
@@ -86,6 +98,8 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Added By</th>
+                
                 <th>Driver</th>
                 <!-- <th>Vehicle Assigning</th> -->
                 <th>Purpose</th>
@@ -100,6 +114,7 @@
             @forelse($payments as $payment)
                 <tr>
                     <td>{{ $payment->id }}</td>
+                    <td>{{ $payment->user->name ?? '--' }}</td>
                     <td>{{ $payment->driver->name  }}</td>
                     <!-- <td>{{ $payment->vehicle_assigning_id }}</td>
                      -->
@@ -117,6 +132,14 @@
                 </tr>
             @endforelse
         </tbody>
+        <tfoot>
+    <tr>
+        <td colspan="4" class="text-right"><strong>Total Amount:</strong></td>
+        <td><strong>{{ $payments->sum('amount') }}</strong></td>
+        <td colspan="4"></td>
+    </tr>
+</tfoot>
+
     </table>
             @else
             <x-no-data-component message="{{$lang->data['no_data_found'] ?? 'No data was found..'}}" />

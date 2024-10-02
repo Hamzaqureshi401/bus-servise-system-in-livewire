@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Payment;
 use App\Models\Driver;
 use App\Models\VehicleAssigning;
+use Auth;
 
 class PaymentsTable extends Component
 {
@@ -17,7 +18,7 @@ class PaymentsTable extends Component
 
     public function mount()
     {
-        $this->payments = Payment::all();
+$this->payments = Payment::orderByRaw('CAST(vehicle_file_no AS UNSIGNED) ASC')->get();
         $this->drivers = Driver::all(); // Fetch drivers for the dropdown
         $this->vehicleAssigning = VehicleAssigning::all(); // Fetch vehicle assignments
     }
@@ -42,13 +43,19 @@ class PaymentsTable extends Component
             'amount' => 'required|numeric',
             'description' => 'nullable|string',
         ]);
+
+        $vehicleAssigning = VehicleAssigning::find($this->vehicle_assigning_id);
         $this->selectedPayment->update([
             'driver_id' => $this->driver_id,
             'vehicle_assigning_id' => $this->vehicle_assigning_id,
             'purpose' => $this->purpose,
             'amount' => $this->amount,
             'description' => $this->description,
-        ]);
+            'company_id'            => $vehicleAssigning->company_id,
+            'vehicle_id'            => $vehicleAssigning->vehicle_id,
+            'vehicle_file_no'       => $vehicleAssigning->vehicle_file_no,
+            'user_id'               => Auth::id(),
+        ]); 
 
        $this->emit('closemodal');
         $this->dispatchBrowserEvent(
